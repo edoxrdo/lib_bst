@@ -14,6 +14,16 @@ class Node{
         right=nullptr;
     }
 
+    friend istream& operator>>(istream&in, Node &node){
+        cin>>node.value;
+        return in;
+    }
+
+    friend ostream& operator<<(ostream&out, Node &node){
+        out<<node.value<<endl;
+        return out;
+    }
+
     Node* InsertR(int k){
         if(k>value){
             if(right==NULL){
@@ -94,3 +104,13 @@ class Node{
         return this;
     }
 };
+
+int main(){
+    Node* root=nullptr;
+    cout<<root<<endl;
+    cout<<root->InsertR(20);
+    cout<<root->insertI(21);
+    cout<<root->searchI(20);
+    cout<<root->searchR(21);
+    return 0;
+}
