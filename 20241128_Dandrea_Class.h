@@ -94,3 +94,12 @@ class Node{
         return this;
     }
 };
+
+int main(){
+    Node* root=nullptr;
+    cout<<root->InsertR(20);
+    cout<<root->insertI(21);
+    cout<<root->searchI(20);
+    cout<<root->searchR(21);
+    return 0;
+}
