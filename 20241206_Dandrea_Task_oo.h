@@ -13,26 +13,19 @@ class Node{
         left=nullptr;
         right=nullptr;
     }
+    friend istream& operator>>(istream& in, Node& node);
+    friend ostream& operator<<(ostream& out, const Node& node);
 
-    friend istream& operator>>(istream&in,Node &node){
-        in>>node.value;
-        return in;
-    }
-
-    friend ostream& operator<<(ostream&out,const Node &node){
-        out<<node.value<<endl;
-        return out;
-    }
     
-    istream& operator>>(istream& in, const Node* Node){
+    friend istream& operator>>(istream& in, Node* Node){
         cout<<"Inserisci un valore"<<endl;
         in>>Node->value;
         return in;
     }
 
-    ostream& operator<<(ostream& out, const Node* Node){
+    friend ostream& operator<<(ostream& out, const Node* Node){
         cout<<"Centrale"<<endl;
-        out<<Node->value
+        out<<Node->value;
         if(Node->left!=NULL){
             cout<<"Sinistro:"<<endl;
             out<<Node->left->value;
@@ -147,9 +140,56 @@ class Node{
     }
 
     Node* deleteNode(int k){
-        if()
+        if(this->value==NULL){
+            cout<<"Non esiste"<<endl;
+            return this;
+        }
+        if(this->value==k){
+            delete this;
+            return this;
+        }
+        if(this->right!=NULL && this->left==NULL){
+            Node* temp;
+            temp->value=this->value;
+            this->value=this->right->value;
+            this->right->value=temp->value;
+            delete this->right;
+            return this;
+        }
+        if(this->right==NULL && this->left!=NULL){
+            Node* temp;
+            temp->value=this->value;
+            this->value=this->left->value;
+            this->left->value=temp->value;
+            delete this->left;
+            return this;
+
+        }
     }
     bool isBst(){
+        if(this==NULL){
+            return true;
+        }
+        if(this->left!=NULL){
+            if(this->left->value<this->value){
+                return this->left->isBst();
+            }
+        }else if(this->left!=NULL){
+            if(this->left->value>this->value){
+                return false;
+            }
+        }
+
+        if(this->right!=NULL){
+            if(this->right->value>this->value){
+                return this->right->isBst();
+            }
+        }else if(this->right!=NULL){
+            if(this->right->value<this->value){
+                return false;
+            }
+        }
+        return true;
 
     }
 };
