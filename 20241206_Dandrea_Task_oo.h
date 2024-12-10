@@ -14,14 +14,28 @@ class Node{
         right=nullptr;
     }
 
-    friend istream& operator>>(istream&in, Node &node){
+    friend istream& operator>>(istream&in,Node &node){
         in>>node.value;
         return in;
     }
 
-    friend ostream& operator<<(ostream&out, Node &node){
+    friend ostream& operator<<(ostream&out,const Node &node){
+        cout<<"Inserisci un valore"<<endl;
         out<<node.value<<endl;
         return out;
+    }
+
+    ostream& operator<<(ostream& out, const Node* Node){
+        cout<<"Centrale"<<endl;
+        out<<Node->value
+        if(Node->left!=NULL){
+            cout<<"Sinistro:"<<endl;
+            out<<Node->left->value;
+        }
+        if(Node->right!=NULL){
+            cout<<"Destro;"<<endl;
+            out<<Node->right->value;
+        }
     }
 
     Node* insertR(int k){
@@ -127,6 +141,7 @@ class Node{
     }
 
     Node* deleteNode(int k){
+        if()
     }
     bool isBst(){
 
